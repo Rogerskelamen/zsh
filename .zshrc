@@ -129,6 +129,32 @@ alias note="nvim ~/Documents/Markdown/DailyNote/$(date '+%Y.%m.%d').md"
 alias ta="ttyrec -a"
 alias tg="ttygif"
 
+###
+#### fzf
+###
+export FZF_DEFAULT_OPTS='--bind ctrl-j:down,ctrl-k:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_COMPLETION_TRIGGER='\'
+export fzf_preview_cmd='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# use vi mode to edit zsh prompts
+bindkey -v
+
+# set the zsh vi-mode flexible cursor style
+function zle-keymap-select {
+    if [[ ${KEYMAP} == vicmd ]] || [[ $1 == 'block' ]]; then
+        echo -ne '\e[1 q'
+    elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 == 'beam' ]]; then
+        echo -ne '\e[5 q'
+    fi
+}
+zle -N zle-keymap-select
+
+# make the beam shape cursor as default
+echo -ne '\e[5 q'
+
 
 ###
 #### Export area
