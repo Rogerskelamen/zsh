@@ -189,8 +189,13 @@ export PATH=$PATH:$MAVEN_HOME/bin
 # config for pkg-config
 export PKG_CONFIG_PATH="/usr/X11/lib/pkgconfig:/opt/homebrew/Cellar/cairo/1.16.0_5/lib/pkgconfig/"
 
-# export for android-sdk
-# export ANDROID_HOME="/opt/homebrew/Caskroom/android-sdk"
+# export for flutter
+export FLUTTER_HOME=/Users/rok/.local/share/flutter
+export PATH=$PATH:$FLUTTER_HOME/bin
+
+# add mirror site for flutter
+export PUB_HOSTED_URL=https://pub.flutter-io.cn
+export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
