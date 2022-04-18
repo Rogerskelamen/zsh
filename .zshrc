@@ -86,7 +86,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
 	z
 	git
+	fzf
+	themes
 	extract
+	vi-mode
+	flutter
+	aliases
+	shell-proxy
 	colored-man-pages
 	zsh-syntax-highlighting
 	zsh-autosuggestions
@@ -158,11 +164,11 @@ bindkey -v
 
 # set the zsh vi-mode flexible cursor style
 # function zle-keymap-select {
-    # if [[ ${KEYMAP} == vicmd ]] || [[ $1 == 'block' ]]; then
-        # echo -ne '\e[1 q'
-    # elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 == 'beam' ]]; then
-        # echo -ne '\e[5 q'
-    # fi
+	# if [[ ${KEYMAP} == vicmd ]] || [[ $1 == 'block' ]]; then
+		# echo -ne '\e[1 q'
+	# elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 == 'beam' ]]; then
+		# echo -ne '\e[5 q'
+	# fi
 # }
 # zle -N zle-keymap-select
 
@@ -179,6 +185,10 @@ export VISUAL=nvim
 
 # set the brew-bottles
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+
+# set network proxy
+SHELLPROXY_URL="http://127.0.0.1:7890"
+proxy enable
 
 # add llvm/clangd to system path
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
@@ -204,6 +214,11 @@ export PATH=$PATH:$FLUTTER_HOME/bin
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
+# export new ruby path
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -220,4 +235,4 @@ export NVM_DIR="$HOME/.nvm"
 # Please make sure this block is at the end of this file.
 [ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
 #### END FIG ENV VARIABLES ####
-export PATH="/opt/homebrew/opt/berkeley-db@4/bin:$PATH"
+
