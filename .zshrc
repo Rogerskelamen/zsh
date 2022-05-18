@@ -1,15 +1,3 @@
-#### FIG ENV VARIABLES ####
-# Please make sure this block is at the start of this file.
-[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
-#### END FIG ENV VARIABLES ####
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -21,7 +9,6 @@ export ZSH=$HOME/.oh-my-zsh
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="ys"
-ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -152,10 +139,10 @@ alias tg="ttygif"
 ###
 #### fzf
 ###
-# export FZF_DEFAULT_OPTS='--bind ctrl-j:down,ctrl-k:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
-# export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-# export FZF_COMPLETION_TRIGGER='\'
-# export fzf_preview_cmd='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'
+export FZF_DEFAULT_OPTS='--bind ctrl-j:down,ctrl-k:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_COMPLETION_TRIGGER='\'
+export fzf_preview_cmd='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
@@ -209,6 +196,7 @@ export PKG_CONFIG_PATH="/usr/X11/lib/pkgconfig:/opt/homebrew/Cellar/cairo/1.16.0
 # export for flutter
 export FLUTTER_HOME=/Users/rok/.local/share/flutter
 export PATH=$PATH:$FLUTTER_HOME/bin
+export NO_PROXY=localhost,127.0.0.1,::1 # set no proxy for flutter
 
 # add mirror site for flutter
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
@@ -219,6 +207,13 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 
+# export hdf5 path
+export HDF5_DIR=/opt/homebrew/Cellar/hdf5/1.13.0
+
+# export OPENBLAS ( for python science calc )
+export OPENBLAS="$(brew --prefix openblas)"
+
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -226,13 +221,11 @@ export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
-# 对nvm环境变量的配置
+# environment of configuration nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#### FIG ENV VARIABLES ####
-# Please make sure this block is at the end of this file.
-[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####
 
+# turn on the starship prompt style
+eval "$(starship init zsh)"
